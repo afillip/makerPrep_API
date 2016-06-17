@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> kitcat </title>
+<style>
+	body{
+		background-color: #6EB3D8
+	}
+	h1{
+		text-align: right;
+		font-family: 'Lucida Console';
+		font-size: 40px;
+		font-weight: bolder;
+		color: #0A699C;
+		margin-right: 5%;
+	}
+	#cat, #kitten{
+		margin-top: 10%;
+		margin-bottom: 5%;
+		color: #A1D1EB;
+		font-size: 40px;
+		font-family: "Lucida Console";
+		background-color: #0A699C;
+		width: 400px;
+		height: 55px;
+		text-align: center;
+		border-radius: 10px;
+		display: inline-block;
+	}
+	#cat{
+		float: left;
+		margin-left: 10%;
+	}
+	#kitten{
+		float:right;
+		margin-right: 10%;
+	}
+	ol,li {
+		clear:both;
+		text-align: center;
+		display: block;	
+
+	}	
+	img{
+		border-radius: 10px;
+		max-height: 80%;
+		max-width: 70%;
+	}
+</style>
+
+<script src="https://code.jquery.com/jquery-2.1.1.js" type="text/javascript"></script>
+<script>
+	$(document).on('ready',function(){
+		$('#cat').on('click',function(event){
+			$.ajax({
+			url: "https://nijikokun-random-cats.p.mashape.com/random",
+			method: "Get",
+			headers: {"X-Mashape-Key": "Adu432ArYamshgU8mV0P4cpH3U71p1HrFlXjsnirZnktSK6Ie9",
+				 "Accept": "application/json"},
+			success: cat
+			});
+		});
+
+		function cat(data){
+			console.log(data.source);
+			console.log(data);
+			$('ol').prepend('<li>' + "<img src ='" + data.source + "'></li>")		
+		};
+		
+
+		$('#kitten').on('click',function(event){
+			$.ajax({
+			url: "https://nijikokun-random-cats.p.mashape.com/random/kitten",
+			method: "Get",
+			headers: {"X-Mashape-Key": "Adu432ArYamshgU8mV0P4cpH3U71p1HrFlXjsnirZnktSK6Ie9",
+				 "Accept": "application/json"},
+			success: kitten
+
+			});
+		function kitten(data){	
+			$('ol').prepend('<li>' + "<img src ='" + data.source + "'></li>")
+		};
+		
+	});
+	});
+
+
+</script>
+
+
+
+
+</head>
+<body>
+<h1> Boost Your Mood </h1>
+<button id = "cat"> Cats? </button>
+<button id = "kitten"> Kittens? </button>
+
+<ol>
+
+</ol>
+
+</body>
+
+</html>
